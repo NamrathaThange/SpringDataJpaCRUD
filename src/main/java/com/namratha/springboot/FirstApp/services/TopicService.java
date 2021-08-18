@@ -11,10 +11,10 @@ public interface TopicService {
 	
 	public List<Topic> getAllTopics();
 	
-	public Topic getTopicById(Long topicId);
+	public Topic getTopicById(Long topicId) throws ResourceNotFoundException;
 	
-	public Topic updateTopic(Long topicId,Topic topic);
+	public Topic updateTopic(Long topicId,Topic topic) throws ResourceNotFoundException;
 	
-	public void deleteTopic(Long topicId);
+	public void deleteTopic(Long topicId) throws ResourceNotFoundException;
 	
 }

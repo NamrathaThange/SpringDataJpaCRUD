@@ -23,28 +23,28 @@ public class TopicController {
 	@Autowired
 	private TopicServiceImpl topicService;
 	
+	@PostMapping("/topics")
+	public ResponseEntity<Topic> addTopic(@RequestBody Topic topic) throws ResourceNotFoundException {
+		return new ResponseEntity<Topic>(topicService.createTopic(topic), HttpStatus.CREATED);
+	}
+	
 	@GetMapping("/topics")
 	public List<Topic> getAllTopics() {
 		return topicService.getAllTopics();
 	}
 	
 	@GetMapping("/topics/{id}")
-	public Topic getTopic(@PathVariable Long id) {
+	public Topic getTopic(@PathVariable Long id) throws ResourceNotFoundException {
 		return topicService.getTopicById(id);
 	}
 	
-	@PostMapping("/topics")
-	public ResponseEntity<Topic> addTopic(@RequestBody Topic topic) throws ResourceNotFoundException {
-		return new ResponseEntity<Topic>(topicService.createTopic(topic), HttpStatus.CREATED);
-	}
-	
 	@PutMapping("/topics/{topicid}")
-	public void updateTopic(@RequestBody Topic topic,@PathVariable Long topicid) {
+	public void updateTopic(@RequestBody Topic topic,@PathVariable Long topicid) throws ResourceNotFoundException {
 		topicService.updateTopic(topicid,topic);	 
 	}
 	
 	@DeleteMapping("/topics/{id}")
-	public void deleteTopic(@PathVariable Long id) {
+	public void deleteTopic(@PathVariable Long id) throws ResourceNotFoundException {
 		 topicService.deleteTopic(id);
 	}
 }
