@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.namratha.springboot.FirstApp.constants.MessageConstant;
 import com.namratha.springboot.FirstApp.domain.Topic;
 import com.namratha.springboot.FirstApp.exceptions.ResourceNotFoundException;
 import com.namratha.springboot.FirstApp.repositaries.TopicRepository;
@@ -49,7 +50,7 @@ public class TopicServiceImpl implements TopicService {
 	private Topic getTopicByName(String topicName) throws ResourceNotFoundException {
 		Topic topic = topicRepository.findByName(topicName);
 		if (topic != null) {
-			String errorInfo = "Given name exists or in use " + topicName + ". ";
+			String errorInfo = topicName + MessageConstant.ALREADY_EXISTS ;
 			throw new ResourceNotFoundException(errorInfo);
 		}
 		return topic;
@@ -58,7 +59,7 @@ public class TopicServiceImpl implements TopicService {
 	private Topic findById(Long id) throws ResourceNotFoundException {
 		Optional<Topic> optionalTopicObject = topicRepository.findById(id);
 		if (!optionalTopicObject.isPresent()) {
-			String errorInfo = "Topic Not Found for the id "+ id ;
+			String errorInfo = MessageConstant.NOT_FOUND + id ;
 			throw new ResourceNotFoundException(errorInfo);
 		}
 		return optionalTopicObject.get();

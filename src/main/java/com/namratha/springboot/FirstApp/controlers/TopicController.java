@@ -28,23 +28,25 @@ public class TopicController {
 		return new ResponseEntity<Topic>(topicService.createTopic(topic), HttpStatus.CREATED);
 	}
 	
-	@GetMapping("/topics")
-	public List<Topic> getAllTopics() {
-		return topicService.getAllTopics();
+	@GetMapping
+	public ResponseEntity<List<Topic>> getAllTopics() {
+		return new ResponseEntity<List<Topic>>(topicService.getAllTopics(), HttpStatus.OK);
 	}
 	
 	@GetMapping("/topics/{id}")
-	public Topic getTopic(@PathVariable Long id) throws ResourceNotFoundException {
-		return topicService.getTopicById(id);
+	public ResponseEntity<Topic> getTopicById(@PathVariable("id") Long id) throws ResourceNotFoundException {
+		return new ResponseEntity<Topic>(topicService.getTopicById(id), HttpStatus.OK);
 	}
 	
 	@PutMapping("/topics/{topicid}")
-	public void updateTopic(@RequestBody Topic topic,@PathVariable Long topicid) throws ResourceNotFoundException {
-		topicService.updateTopic(topicid,topic);	 
+	public ResponseEntity<Topic> updateTopic(@RequestBody Topic topic,@PathVariable Long topicid) throws ResourceNotFoundException {
+		return new ResponseEntity<Topic>(topicService.updateTopic(topicid,topic), HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/topics/{id}")
-	public void deleteTopic(@PathVariable Long id) throws ResourceNotFoundException {
-		 topicService.deleteTopic(id);
+	public ResponseEntity<String> deleteTopic(@PathVariable("id") Long id) throws ResourceNotFoundException {
+		topicService.deleteTopic(id);
+		return new ResponseEntity<String>("Deleted Successfully",HttpStatus.OK);
 	}
+	
 }
