@@ -19,7 +19,7 @@ public class TopicServiceImpl implements TopicService {
 
 	@Override
 	public Topic createTopic(Topic topic) throws ResourceNotFoundException {
-		getTopicByName(topic.getName());
+		getTopicByName(topic.getTechnologyName());
 		return topicRepository.save(topic);
 	}
 
@@ -36,8 +36,8 @@ public class TopicServiceImpl implements TopicService {
 	@Override
 	public Topic updateTopic(Long topicId, Topic updatedTopicInfo) throws ResourceNotFoundException {
 		Topic topic = findById(topicId);
-		topic.setName(updatedTopicInfo.getName());
-		topic.setDescription(updatedTopicInfo.getDescription());
+		topic.setTechnologyName(updatedTopicInfo.getTechnologyName());
+		topic.setTechnologyDescription(updatedTopicInfo.getTechnologyDescription());
 		return topicRepository.save(topic);
 	}
 
@@ -48,7 +48,7 @@ public class TopicServiceImpl implements TopicService {
 	}
 
 	private Topic getTopicByName(String topicName) throws ResourceNotFoundException {
-		Topic topic = topicRepository.findByName(topicName);
+		Topic topic = topicRepository.findByTechnologyName(topicName);
 		if (topic != null) {
 			String errorInfo = topicName + MessageConstant.ALREADY_EXISTS ;
 			throw new ResourceNotFoundException(errorInfo);

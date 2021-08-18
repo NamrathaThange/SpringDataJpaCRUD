@@ -8,6 +8,6 @@ import com.namratha.springboot.FirstApp.domain.Topic;
 @Repository
 public interface TopicRepository extends JpaRepository<Topic , Long> {
 
-	Topic findByName(String topicName);
+	Topic findByTechnologyName(String topicName);
 
 }
