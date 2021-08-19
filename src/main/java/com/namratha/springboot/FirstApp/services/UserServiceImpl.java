@@ -3,6 +3,8 @@ package com.namratha.springboot.FirstApp.services;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -64,6 +66,12 @@ public class UserServiceImpl implements UserService {
 		}
 		return optionaluserObject.get();
 
+	}
+	
+	
+	@Override
+	public int updateValidEmail(String email, int status) {
+		return userRepository.updateValidEmail(email,status);
 	}
 
 }

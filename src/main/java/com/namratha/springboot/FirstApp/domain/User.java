@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "User")
+@Table(name = "UserDetails")
 public class User {
 
 	@Id
@@ -33,13 +33,23 @@ public class User {
 	
 	@Column(name = "OTP")
 	private Integer otp;
+	
+	@Column(name = "ValidEmail")
+	private boolean validEmail;
+	
+	@Column(name = "valid_OTP")
+	private boolean validOtp;
+	
+	@Column(name = "ValidUser")
+	private boolean validUser;
+	
 
 	public User() {
 
 	}
 
 	public User(Integer userId, String firstName, String lastName, String email, Integer mobileNumber, String password,
-			Integer otp) {
+			Integer otp, boolean validEmail, boolean validOtp, boolean validUser) {
 		super();
 		this.userId = userId;
 		this.firstName = firstName;
@@ -48,9 +58,10 @@ public class User {
 		this.mobileNumber = mobileNumber;
 		this.password = password;
 		this.otp = otp;
+		this.validEmail = validEmail;
+		this.validOtp = validOtp;
+		this.validUser = validUser;
 	}
-
-
 
 	public Integer getUserId() {
 		return userId;
@@ -108,4 +119,28 @@ public class User {
 		this.otp = otp;
 	}
 
+	public boolean isValidEmail() {
+		return validEmail;
+	}
+
+	public void setValidEmail(boolean validEmail) {
+		this.validEmail = validEmail;
+	}
+
+	public boolean isValidOtp() {
+		return validOtp;
+	}
+
+	public void setValidOtp(boolean validOtp) {
+		this.validOtp = validOtp;
+	}
+
+	public boolean isValidUser() {
+		return validUser;
+	}
+
+	public void setValidUser(boolean validUser) {
+		this.validUser = validUser;
+	}
+	
 }
