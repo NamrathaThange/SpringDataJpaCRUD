@@ -19,7 +19,7 @@ public class TopicServiceImpl implements TopicService {
 
 	@Override
 	public Topic createTopic(Topic topic) throws ResourceNotFoundException {
-		getTopicByName(topic.getTechnologyName());
+		findByTechnologyName(topic.getTechnologyName());
 		return topicRepository.save(topic);
 	}
 
@@ -43,11 +43,10 @@ public class TopicServiceImpl implements TopicService {
 
 	@Override
 	public void deleteTopic(Long topicId) throws ResourceNotFoundException {
-		Topic topic = findById(topicId);
-		topicRepository.delete(topic);
+		topicRepository.delete(findById(topicId));
 	}
 
-	private Topic getTopicByName(String topicName) throws ResourceNotFoundException {
+	private Topic findByTechnologyName(String topicName) throws ResourceNotFoundException {
 		Topic topic = topicRepository.findByTechnologyName(topicName);
 		if (topic != null) {
 			String errorInfo = topicName + MessageConstant.ALREADY_EXISTS ;

@@ -3,8 +3,6 @@ package com.namratha.springboot.FirstApp.services;
 import java.util.List;
 import java.util.Optional;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +19,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User createUser(User user) throws ResourceNotFoundException {
-		getUserByEmail(user.getEmail());
+		findByEmail(user.getEmail());
 		return userRepository.save(user);
 	}
 
@@ -45,11 +43,10 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void deleteUser(Integer userId) throws ResourceNotFoundException {
-		User user = findById(userId);
-		userRepository.delete(user);
+		userRepository.delete(findById(userId));
 	}
 
-	private User getUserByEmail(String email) throws ResourceNotFoundException {
+	private User findByEmail(String email) throws ResourceNotFoundException {
 		User user = userRepository.findByEmail(email);
 		if (user != null) {
 			String errorInfo = email + MessageConstant.ALREADY_EXISTS ;
@@ -65,9 +62,7 @@ public class UserServiceImpl implements UserService {
 			throw new ResourceNotFoundException(errorInfo);
 		}
 		return optionaluserObject.get();
-
 	}
-	
 	
 	@Override
 	public int updateValidEmail(String email, int status) {
