@@ -17,6 +17,6 @@ public interface UserService {
 	
 	public void deleteUser(Integer userId) throws ResourceNotFoundException;
 	
-	public int updateValidEmail(String email, int status);
+	public int updateValidEmail(String email, boolean status);
 	
 }

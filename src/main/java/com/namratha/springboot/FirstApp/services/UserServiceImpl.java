@@ -22,6 +22,7 @@ public class UserServiceImpl implements UserService {
 		findByEmail(user.getEmail());
 		return userRepository.save(user);
 	}
+	
 
 	@Override
 	public List<User> getAllUsers() {
@@ -65,8 +66,10 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public int updateValidEmail(String email, int status) {
+	public int updateValidEmail(String email, boolean status) {
+		System.out.println("status "+status+" email:"+email);
 		return userRepository.updateValidEmail(email,status);
+		
 	}
 
 }

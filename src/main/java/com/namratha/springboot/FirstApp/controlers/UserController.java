@@ -50,7 +50,8 @@ public class UserController {
 	}
 	
 	@PutMapping("/users/{email}/{status}")
-	public ResponseEntity<String> updateValidEmail(@PathVariable int status,@PathVariable String email) throws ResourceNotFoundException {
+	public ResponseEntity<String> updateValidEmail(@PathVariable boolean status,@PathVariable String email) throws ResourceNotFoundException {
+		userService.updateValidEmail(email, status);
 		return new ResponseEntity<String>("status updated Sucessfully", HttpStatus.OK);
 	}
 	
