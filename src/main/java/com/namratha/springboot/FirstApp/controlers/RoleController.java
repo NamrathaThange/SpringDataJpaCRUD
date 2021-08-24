@@ -47,10 +47,6 @@ public class RoleController {
 	public ResponseEntity<String> deleteRole(@PathVariable Long roleId) throws ResourceNotFoundException {
 		roleService.deleteRole(roleId);
 		return new ResponseEntity<String>("Deleted Successfully",HttpStatus.OK);
-	}
-	
-	
-	
-	
+	}	
 
 }
