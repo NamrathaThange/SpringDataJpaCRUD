@@ -30,12 +30,12 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User getUserById(Integer userId) throws ResourceNotFoundException {
+	public User getUserById(Long userId) throws ResourceNotFoundException {
 		return findById(userId);
 	}
 
 	@Override
-	public User updateUser(Integer userId,User updatedUser)throws ResourceNotFoundException {
+	public User updateUser(Long userId,User updatedUser)throws ResourceNotFoundException {
 		User user = findById(userId);
 		user.setFirstName(updatedUser.getFirstName());
 		user.setLastName(updatedUser.getLastName());
@@ -43,7 +43,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void deleteUser(Integer userId) throws ResourceNotFoundException {
+	public void deleteUser(Long userId) throws ResourceNotFoundException {
 		userRepository.delete(findById(userId));
 	}
 
@@ -56,7 +56,7 @@ public class UserServiceImpl implements UserService {
 		return user;
 	}
 
-	private User findById(Integer userId) throws ResourceNotFoundException {
+	private User findById(Long userId) throws ResourceNotFoundException {
 		Optional<User> optionaluserObject = userRepository.findById(userId);
 		if (!optionaluserObject.isPresent()) {
 			String errorInfo = MessageConstant.NOT_FOUND + userId ;

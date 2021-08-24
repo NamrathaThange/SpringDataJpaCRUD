@@ -11,11 +11,11 @@ public interface UserService {
 	
 	public List<User> getAllUsers();
 	
-	public User getUserById(Integer userId) throws ResourceNotFoundException;
+	public User getUserById(Long userId) throws ResourceNotFoundException;
 	
-	public User updateUser(Integer userId,User user) throws ResourceNotFoundException;
+	public User updateUser(Long userId,User user) throws ResourceNotFoundException;
 	
-	public void deleteUser(Integer userId) throws ResourceNotFoundException;
+	public void deleteUser(Long userId) throws ResourceNotFoundException;
 	
 	public int updateValidEmail(String email, boolean status);
 	

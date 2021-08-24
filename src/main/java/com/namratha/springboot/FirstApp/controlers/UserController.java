@@ -34,17 +34,17 @@ public class UserController {
 	}
 	
 	@GetMapping("/users/{id}")
-	public ResponseEntity<User> getUserById(@PathVariable("id") Integer id) throws ResourceNotFoundException {
+	public ResponseEntity<User> getUserById(@PathVariable("id") Long id) throws ResourceNotFoundException {
 		return new ResponseEntity<User>(userService.getUserById(id), HttpStatus.OK);
 	}
 	
 	@PutMapping("/users/{id}")
-	public ResponseEntity<User> updateUser(@RequestBody User user,@PathVariable("id") Integer userId) throws ResourceNotFoundException {
+	public ResponseEntity<User> updateUser(@RequestBody User user,@PathVariable("id") Long userId) throws ResourceNotFoundException {
 		return new ResponseEntity<User>(userService.updateUser(userId,user), HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/users/{id}")
-	public ResponseEntity<String> deleteUser(@PathVariable("id") Integer userId) throws ResourceNotFoundException {
+	public ResponseEntity<String> deleteUser(@PathVariable("id") Long userId) throws ResourceNotFoundException {
 		userService.deleteUser(userId);
 		return new ResponseEntity<String>("Deleted Successfully",HttpStatus.OK);
 	}
